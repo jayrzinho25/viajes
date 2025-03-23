@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/normalize.css">
 
     <!-- START -->
-    <script src="./js/functions.js"></script>
+    <script src="js/functions.js"></script>
 </head>
 <body class="mvh-100 bg-gray sb2-hidden">
     <!-- ON LOADER -->
@@ -213,6 +213,6 @@
         <p>© Avianca S.A 2023</p>
     </footer>
     <!-- SCRIPTS -->
-    <script src="./js/flight-detail-back.js"></script>
+    <script src="js/flight-detail-back.js"></script>
 </body>
 </html>
