@@ -62,11 +62,17 @@ if(info.flightInfo.origin.country === 'Colombia' && info.flightInfo.destination.
  * 
  */
 const btnEditFlight = document.querySelector('#btn-edit-flight');
-btnEditFlight.addEventListener('click', ()=>{
+btnEditFlight.addEventListener('click', () => {
     info.edit = 1;
     updateLS();
-    window.location.href = 'index.php';
+
+    if (window.history.length > 2) {
+        window.history.go(-2); // Retrocede dos páginas atrás en el historial
+    } else {
+        window.location.href = '/'; // Si no hay historial suficiente, ir a la página principal
+    }
 });
+
 
 
 
