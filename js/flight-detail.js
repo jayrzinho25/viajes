@@ -99,26 +99,24 @@ btnEditFlight.addEventListener('click', () => {
  */
 document.addEventListener("DOMContentLoaded", function () {
     const btnTariffConditions = document.querySelector("#btn-tariff-conditions");
-    const modalTariff = document.querySelector("#modal-tariff-conditions");
-    const closeTariffModal = document.querySelector("#close-tariff-modal");
+    const tariffContent = document.querySelector("#tariff-conditions-content");
+    const arrowIcon = document.querySelector("#arrow-icon");
 
-    // Mostrar el modal cuando el usuario haga clic en "Condiciones tarifarias"
+    // Alternar la visibilidad cuando se haga clic en "Condiciones tarifarias"
     btnTariffConditions.addEventListener("click", () => {
-        modalTariff.style.display = "block";
-    });
-
-    // Ocultar el modal cuando el usuario haga clic en la "X"
-    closeTariffModal.addEventListener("click", () => {
-        modalTariff.style.display = "none";
-    });
-
-    // Cerrar el modal si el usuario hace clic fuera de él
-    window.addEventListener("click", (event) => {
-        if (event.target === modalTariff) {
-            modalTariff.style.display = "none";
+        if (tariffContent.style.display === "none" || tariffContent.style.display === "") {
+            tariffContent.style.display = "block"; // Mostrar contenido
+            arrowIcon.style.transform = "rotate(180deg)"; // Rotar flecha hacia arriba
+        } else {
+            tariffContent.style.display = "none"; // Ocultar contenido
+            arrowIcon.style.transform = "rotate(0deg)"; // Rotar flecha hacia abajo
         }
     });
+
+    // Inicialmente, ocultamos el contenido
+    tariffContent.style.display = "none";
 });
+
 
 
 function updateLS(){
