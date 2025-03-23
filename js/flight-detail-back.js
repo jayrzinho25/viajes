@@ -69,7 +69,7 @@ btnEditFlight.addEventListener('click', () => {
     if (window.history.length > 2) {
         window.history.go(-2); // Retrocede dos páginas atrás en el historial
     } else {
-        window.location.href = '/'; // Si no hay historial suficiente, ir a la página principal
+        window.location.href = 'index.html'; // Si no hay historial suficiente, ir a la página principal
     }
 });
 
