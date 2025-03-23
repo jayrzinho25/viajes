@@ -183,3 +183,32 @@ function dDisp() {
 
 
 LS.getItem('info') ? info = JSON.parse(LS.getItem('info')) : LS.setItem('info', JSON.stringify(info));
+
+document.addEventListener("DOMContentLoaded", function () {
+    const btnTariffConditions = document.querySelector("#btn-tariff-conditions");
+    const tariffContent = document.querySelector("#tariff-conditions-content");
+    const arrowIcon = document.querySelector("#arrow-icon");
+
+    // Alternar la visibilidad cuando se haga clic en "Condiciones tarifarias"
+    btnTariffConditions.addEventListener("click", (event) => {
+        event.stopPropagation(); // Evita que el evento de clic se propague al documento
+        const isVisible = tariffContent.classList.contains("show");
+
+        if (!isVisible) {
+            tariffContent.classList.add("show");
+            arrowIcon.style.transform = "rotate(180deg)"; // Rotar flecha hacia arriba
+        } else {
+            tariffContent.classList.remove("show");
+            arrowIcon.style.transform = "rotate(0deg)"; // Rotar flecha hacia abajo
+        }
+    });
+
+    // Cerrar el acordeón si el usuario hace clic fuera de él
+    document.addEventListener("click", (event) => {
+        if (!tariffContent.contains(event.target) && !btnTariffConditions.contains(event.target)) {
+            tariffContent.classList.remove("show");
+            arrowIcon.style.transform = "rotate(0deg)";
+        }
+    });
+});
+
