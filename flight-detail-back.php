@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avianca - Booking</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="shortcut icon" href="./assets/favicon.png" t  ype="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.png" t  ype="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/flight.css">
-    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="css/flight.css">
+    <link rel="stylesheet" href="css/normalize.css">
 
     <!-- START -->
     <script src="./js/functions.js"></script>
@@ -21,7 +21,7 @@
 <body class="mvh-100 bg-gray sb2-hidden">
     <!-- ON LOADER -->
     <div class="loader show">
-        <img class="" src="./assets/svg/plane-loader.gif">
+        <img class="" src="images/plane-loader.gif">
     </div>
 
 
@@ -30,12 +30,12 @@
             <div class="details">
                 <img src="./assets/logos/avianca_red.svg">
                 <h4 id="origin-code">BOG</h4>
-                <img src="./assets/svg/arrow.png" width="14px">
+                <img src="images/arrow.png" width="14px">
                 <h4 id="destination-code">CLI</h4>
                 <span>|</span>
                 <p id="flight-date">Dic 22</p>
                 <span>|</span>
-                <img id="btn-edit-flight" src="./assets/svg/pen.png" width="18px">
+                <img id="btn-edit-flight" src="images/pen.png" width="18px">
             </div>
         </div>
     </header>
@@ -47,7 +47,7 @@
                 <p id="flight-label-1" class="fs-4">Selecciona tu vuelo de regreso - Vie, Dic 22</p>
                 <h4 id="flight-label-2" clasS="fs-2">Bogotá a Cali</h4>
             </div>
-            <img src="./assets/svg/filter.svg">
+            <img src="images/filter.svg">
         </div>
 
         <div class="mt-2 card-schedule">
@@ -95,18 +95,18 @@
 
         <div class="conditions mt-3">
             <div>
-                <img src="./assets/svg/dot_menu.png" width="25px" style="margin-right: 10px;">
+                <img src="images/dot_menu.png" width="25px" style="margin-right: 10px;">
                 <p style="float: right; margin-top: 3px;">Condiciones tarifarias</p>
             </div>
             
-            <img src="./assets/svg/down_arrow.png" width="15px">
+            <img src="images/down_arrow.png" width="15px">
         </div>
 
     </main>
  
     <div class="modal mt-10" id="modal-select-ticket">
         <div class="modal-header">
-            <img id="modal-close-ticket" src="./assets/svg/left-arrow.png" width="14px">
+            <img id="modal-close-ticket" src="images/left-arrow.png" width="14px">
             <p>Selecciona tu tarifa</p>
         </div>
         <div class="ticket-label">
@@ -116,7 +116,7 @@
         <div class="modal-body">
 
             <div class="ct-item mb-2">
-                <img src="./assets/svg/info_icon.png" width="18px">
+                <img src="images/info_icon.png" width="18px">
                 <p>Los vuelos sujetos a promociones no podrán escoger su asiento.</p>
             </div>
 
@@ -126,11 +126,11 @@
                     <p class="card-ticket-label">Más económica</p>
                     <div class="card-ticket-items">
                         <div class="ct-item">
-                            <img src="./assets/svg/personalItemLowest-XS.svg" width="18px">
+                            <img src="images/personalItemLowest-XS.svg" width="18px">
                             <p>1 artículo personal (bolso) (debe caber bajo el asiento)</p>
                         </div>
                         <div class="ct-item" style="text-decoration: underline;">
-                            <img src="./assets/svg/icon-alert-denied.svg" width="18px">
+                            <img src="images/icon-alert-denied.svg" width="18px">
                             <p>Restricciones de la tarifa</p>
                         </div>
                     </div>
@@ -148,15 +148,15 @@
                     <p class="card-ticket-label">Viaje ligero</p>
                     <div class="card-ticket-items">
                         <div class="ct-item">
-                            <img src="./assets/svg/carryOnBaggage-S.svg" width="18px">
+                            <img src="images/carryOnBaggage-S.svg" width="18px">
                             <p>1 equipaje de mano (10 kg) + bolso</p>
                         </div>
                         <div class="ct-item">
-                            <img src="./assets/svg/mileageAcrual-S.svg" width="18px">
+                            <img src="images/mileageAcrual-S.svg" width="18px">
                             <p>Acumula LifeMiles</p>
                         </div>
                         <div class="ct-item" style="text-decoration: underline;">
-                            <img src="./assets/svg/icon-alert-denied.svg" width="18px">
+                            <img src="images/icon-alert-denied.svg" width="18px">
                             <p>Restricciones de la tarifa</p>
                         </div>
                     </div>
@@ -174,27 +174,27 @@
                     <p class="card-ticket-label">Más confort</p>
                     <div class="card-ticket-items">
                         <div class="ct-item">
-                            <img src="./assets/svg/carryOnBaggage-M.svg" width="18px">
+                            <img src="images/carryOnBaggage-M.svg" width="18px">
                             <p>1 equipaje de mano (10 kg) + bolso</p>
                         </div>
                         <div class="ct-item">
-                            <img src="./assets/svg/mileageAcrual-M.svg" width="18px">
+                            <img src="images/mileageAcrual-M.svg" width="18px">
                             <p>Acumula LifeMiles</p>
                         </div>
                         <div class="ct-item">
-                            <img src="./assets/svg/baggageAllowance-M.svg" width="18px">
+                            <img src="images/baggageAllowance-M.svg" width="18px">
                             <p>1 equipaje de bodega (23 kg)</p>
                         </div>
                         <div class="ct-item">
-                            <img src="./assets/svg/airportCheckin-M.svg" width="18px">
+                            <img src="images/airportCheckin-M.svg" width="18px">
                             <p>Check-in gratis en aeropuerto</p>
                         </div>
                         <div class="ct-item">
-                            <img src="./assets/svg/standardSeat-M.svg" width="18px">
+                            <img src="images/standardSeat-M.svg" width="18px">
                             <p>Asiento Economy</p>
                         </div>
                         <div class="ct-item" style="text-decoration: underline;">
-                            <img src="./assets/svg/icon-alert-denied.svg" width="18px">
+                            <img src="images/icon-alert-denied.svg" width="18px">
                             <p>Restricciones de la tarifa</p>
                         </div>
                     </div>
