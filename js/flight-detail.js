@@ -97,6 +97,30 @@ btnEditFlight.addEventListener('click', () => {
  * FUNCTIONS
  * 
  */
+document.addEventListener("DOMContentLoaded", function () {
+    const btnTariffConditions = document.querySelector("#btn-tariff-conditions");
+    const modalTariff = document.querySelector("#modal-tariff-conditions");
+    const closeTariffModal = document.querySelector("#close-tariff-modal");
+
+    // Mostrar el modal cuando el usuario haga clic en "Condiciones tarifarias"
+    btnTariffConditions.addEventListener("click", () => {
+        modalTariff.style.display = "block";
+    });
+
+    // Ocultar el modal cuando el usuario haga clic en la "X"
+    closeTariffModal.addEventListener("click", () => {
+        modalTariff.style.display = "none";
+    });
+
+    // Cerrar el modal si el usuario hace clic fuera de él
+    window.addEventListener("click", (event) => {
+        if (event.target === modalTariff) {
+            modalTariff.style.display = "none";
+        }
+    });
+});
+
+
 function updateLS(){
     LS.setItem('info', JSON.stringify(info));
 }
