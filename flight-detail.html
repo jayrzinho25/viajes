@@ -93,14 +93,73 @@
             </div>
         </div>
 
-        <div class="conditions mt-3">
-            <div>
-                <img src="images/dot_menu.png" width="25px" style="margin-right: 10px;">
-                <p style="float: right; margin-top: 3px;">Condiciones tarifarias</p>
+        <div class="conditions mt-3" id="btn-tariff-conditions">
+    <div>
+        <img src="images/dot_menu.png" width="25px" style="margin-right: 10px;">
+        <p style="float: right; margin-top: 3px;">Condiciones tarifarias</p>
+    </div>
+    <img src="images/down_arrow.png" width="15px">
+</div>
+
+<!-- Modal de Condiciones Tarifarias -->
+<div id="modal-tariff-conditions" class="modal">
+    <div class="modal-header">
+        <h4>Condiciones Tarifarias</h4>
+        <span id="close-tariff-modal" class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+        <!-- Contenido con las condiciones tarifarias -->
+        <div class="ui-accordion">
+            <div class="ui-accordion_header" role="heading">
+                <button class="ui-accordion_trigger"
+                        data-toggle="collapse"
+                        data-parent="#accordion"
+                        aria-expanded="false">
+                    <span class="ui-accordion_trigger_title">Condiciones tarifarias</span>
+                </button>
             </div>
-            
-            <img src="images/down_arrow.png" width="15px">
+            <div role="region">
+                <div class="ui-accordion_body">
+                    <p><strong>Cambios de vuelo</strong></p>
+                    <p>Para las tarifas basic, light y classic se permiten cambios antes de la salida del vuelo, pero aplican los siguientes cargos adicionales:</p>
+                    <ul>
+                        <li>Cargo por cambio: Se generan cargos adicionales al cambiar tu vuelo voluntariamente.</li>
+                    </ul>
+                    <table border="0" style="max-width: 644px;">
+                        <tbody>
+                            <tr>
+                                <td><strong>Vuelos nacionales en Colombia</strong></td>
+                                <td>120.000 COP</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vuelos nacionales en Ecuador</strong></td>
+                                <td>30 USD</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vuelos internacionales al interior de Suramérica</strong></td>
+                                <td>185 USD</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Otros vuelos internacionales en las Américas y vuelos hacia Europa</strong></td>
+                                <td>USD/CAD 210</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Desde Reino Unido</strong></td>
+                                <td>GBP 150</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Desde el resto de Europa</strong></td>
+                                <td>EUR 180</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Consulta más información sobre tarifas y políticas de cambios en <a href="https://ayuda.avianca.com" target="_blank">el sitio de Avianca</a>.</p>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
+
 
     </main>
  
