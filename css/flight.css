@@ -847,30 +847,22 @@ h4{
 }
 
 .accordion-content {
-    display: none; /* Oculto al inicio */
-    padding: 10px;
+    display: none; /* Ocultar por defecto */
+    padding: 15px;
     background-color: #f8f8f8;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-top: 5px;
+    transition: max-height 0.3s ease-in-out;
+    overflow: hidden;
 }
 
 .accordion-content.show {
     display: block; /* Se mostrará cuando tenga la clase "show" */
 }
 
-/* Animación de despliegue */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.accordion-content.show {
-    animation: fadeIn 0.3s ease-in-out;
+/* Animación para la flecha */
+#arrow-icon.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease-in-out;
 }
