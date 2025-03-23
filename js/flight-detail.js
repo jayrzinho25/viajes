@@ -102,20 +102,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const tariffContent = document.querySelector("#tariff-conditions-content");
     const arrowIcon = document.querySelector("#arrow-icon");
 
-    // Alternar la visibilidad cuando se haga clic en "Condiciones tarifarias"
     btnTariffConditions.addEventListener("click", () => {
-        if (tariffContent.style.display === "none" || tariffContent.style.display === "") {
-            tariffContent.style.display = "block"; // Mostrar contenido
-            arrowIcon.style.transform = "rotate(180deg)"; // Rotar flecha hacia arriba
+        tariffContent.classList.toggle("show");
+
+        // Rotar la flecha
+        if (tariffContent.classList.contains("show")) {
+            arrowIcon.style.transform = "rotate(180deg)";
         } else {
-            tariffContent.style.display = "none"; // Ocultar contenido
-            arrowIcon.style.transform = "rotate(0deg)"; // Rotar flecha hacia abajo
+            arrowIcon.style.transform = "rotate(0deg)";
         }
     });
-
-    // Inicialmente, ocultamos el contenido
-    tariffContent.style.display = "none";
 });
+
 
 
 
