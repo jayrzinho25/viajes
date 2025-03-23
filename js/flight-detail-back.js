@@ -153,5 +153,5 @@ function loadFlight(flight_sched){
 }
 
 function nextStep(type){
-    window.location.href = 'step-two.php';
+    window.location.href = 'step-two.html';
 }
