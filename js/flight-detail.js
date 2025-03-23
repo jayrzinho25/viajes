@@ -73,16 +73,14 @@ const btnEditFlight = document.querySelector('#btn-edit-flight');
 btnEditFlight.addEventListener('click', () => {
     info.edit = 1;
     updateLS();
-    
-    let prevPage = document.referrer; // Obtiene la URL de la página anterior
-    let homePage = '/'; // Cambia esto a la URL de la página principal, como 'homepage.html' o '/' si es la raíz
 
-    if (prevPage && prevPage !== window.location.href && prevPage.includes(window.location.origin)) {
-        window.location.href = prevPage; // Si hay una página válida, redirige a ella
+    if (window.history.length > 2) {
+        window.history.go(-2); // Retrocede dos páginas atrás en el historial
     } else {
-        window.location.href = homePage; // Si no hay una página válida, redirige a la página principal
+        window.location.href = '/'; // Si no hay historial suficiente, ir a la página principal
     }
 });
+
 
 
 
