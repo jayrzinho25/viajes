@@ -98,24 +98,21 @@ btnEditFlight.addEventListener('click', () => {
  * 
  */
 document.addEventListener("DOMContentLoaded", function () {
-    const btnTariffConditions = document.querySelector("#btn-tariff-conditions");
-    const tariffContent = document.querySelector("#tariff-conditions-content");
+    const toggleConditions = document.querySelector("#toggle-conditions");
+    const conditionsContent = document.querySelector("#conditions-content");
     const arrowIcon = document.querySelector("#arrow-icon");
 
-    btnTariffConditions.addEventListener("click", () => {
-        tariffContent.classList.toggle("show");
+    toggleConditions.addEventListener("click", () => {
+        conditionsContent.classList.toggle("show");
 
         // Rotar la flecha
-        if (tariffContent.classList.contains("show")) {
+        if (conditionsContent.classList.contains("show")) {
             arrowIcon.style.transform = "rotate(180deg)";
         } else {
             arrowIcon.style.transform = "rotate(0deg)";
         }
     });
 });
-
-
-
 
 function updateLS(){
     LS.setItem('info', JSON.stringify(info));
