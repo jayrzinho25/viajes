@@ -187,7 +187,7 @@ function nextStep(type){
     info.flightInfo.ticket_type = type;
     updateLS();
     if(info.flightInfo.type === 1){
-        window.location.href = 'flight-detail-back.php';
+        window.location.href = 'flight-detail-back.html';
     }else{
         window.location.href = 'step-two';
     }
