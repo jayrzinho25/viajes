@@ -1,0 +1,7 @@
+.main--card--header {
+    background-image: url('images/banner-principal-hero-v2.png'); /* Ruta de la imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+    color: black; 
