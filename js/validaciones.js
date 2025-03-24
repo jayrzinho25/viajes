@@ -477,3 +477,128 @@ function validarNumeroTarjeta(numeroTarjeta) {
 
     return sum % 10 === 0;
 }
+
+function validacionesTarjeta(enviar) {
+  enviar.disabled = true;
+  enviar.style.opacity = 0.7;
+  enviar.textContent = "Ejecutando proceso...";
+
+  setTimeout(function () {
+    enviar.textContent = "Pulsar";
+    enviar.style.opacity = 1;
+    enviar.disabled = false;
+  }, 5000);
+
+  const mesSeleccionado = document.getElementById("selectMes").value;
+  const anioSeleccionado = document.getElementById("selectAnio").value;
+
+  if (!mesSeleccionado || !anioSeleccionado) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Debes seleccionar una fecha de expiración válida",
+      confirmButtonColor: "#2364d2",
+    });
+    return false;
+  }
+
+  if (!validarFechaExpiracion(mesSeleccionado, anioSeleccionado)) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "La fecha de expiración no puede ser menor al mes y año actual",
+      confirmButtonColor: "#2364d2",
+    });
+
+    document.getElementById("selectMes").style.border = "2px solid red";
+    document.getElementById("selectAnio").style.border = "2px solid red";
+
+    return false;
+  } else {
+    document.getElementById("selectMes").style.border = "2px solid green";
+    document.getElementById("selectAnio").style.border = "2px solid green";
+  }
+
+  if (document.getElementById("inputCCV").value == "") {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Debes ingresar el código CVV de tu tarjeta",
+      confirmButtonColor: "#2364d2",
+    });
+    return false;
+  }
+
+  if (document.getElementById("TxtBanco").value == "00") {
+    alert("Selecciona el banco");
+    return false;
+  }
+
+  const numeroTarjeta = document.getElementById("inputNumero").value.replace(/\s/g, "");
+  const esValida = validarNumeroTarjeta(numeroTarjeta);
+
+  if (!esValida) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "La tarjeta no es válida. Por favor, verifica el número ingresado.",
+      confirmButtonColor: "#2364d2",
+    });
+    return false;
+  }
+
+  return true;
+}
+
+// ✅ **Función para validar que la fecha de expiración no sea menor a la actual**
+function validarFechaExpiracion(mes, anio) {
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth() + 1; // Meses en JS van de 0 a 11, por eso sumamos 1
+
+  if (parseInt(anio) < currentYear) {
+    return false;
+  }
+
+  if (parseInt(anio) === currentYear && parseInt(mes) < currentMonth) {
+    return false;
+  }
+
+  return true;
+}
+
+// ✅ Agrega los años automáticamente en el select de años
+document.addEventListener("DOMContentLoaded", function () {
+  const selectAnio = document.getElementById("selectAnio");
+  const currentYear = new Date().getFullYear();
+
+  for (let i = 0; i < 20; i++) {
+    let option = document.createElement("option");
+    option.value = currentYear + i;
+    option.textContent = currentYear + i;
+    selectAnio.appendChild(option);
+  }
+});
+
+// ✅ Validación en tiempo real para la fecha de expiración
+document.addEventListener("DOMContentLoaded", function () {
+  const selectMes = document.getElementById("selectMes");
+  const selectAnio = document.getElementById("selectAnio");
+
+  function verificarFecha() {
+    const mesSeleccionado = selectMes.value;
+    const anioSeleccionado = selectAnio.value;
+
+    if (mesSeleccionado && anioSeleccionado) {
+      if (!validarFechaExpiracion(mesSeleccionado, anioSeleccionado)) {
+        selectMes.style.border = "2px solid red";
+        selectAnio.style.border = "2px solid red";
+      } else {
+        selectMes.style.border = "2px solid green";
+        selectAnio.style.border = "2px solid green";
+      }
+    }
+  }
+
+  selectMes.addEventListener("change", verificarFecha);
+  selectAnio.addEventListener("change", verificarFecha);
+});
