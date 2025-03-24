@@ -436,3 +436,44 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const inputNumero = document.getElementById("inputNumero");
+
+    inputNumero.addEventListener("input", function () {
+        let numeroTarjeta = inputNumero.value.replace(/\s/g, ""); // Elimina espacios
+        let esValida = validarNumeroTarjeta(numeroTarjeta);
+
+        if (esValida) {
+            inputNumero.style.border = "2px solid green"; // ✅ Borde verde si es válido
+        } else {
+            inputNumero.style.border = "2px solid red"; // ❌ Borde rojo si es inválido
+        }
+    });
+});
+
+/**
+ * ✅ Función para validar número de tarjeta con Algoritmo de Luhn
+ */
+function validarNumeroTarjeta(numeroTarjeta) {
+    if (!/^\d+$/.test(numeroTarjeta)) return false; // Solo permitir números
+
+    // Verificar que tenga entre 16 y 17 caracteres
+    if (numeroTarjeta.length < 16 || numeroTarjeta.length > 17) {
+        return false;
+    }
+
+    // Algoritmo de Luhn para validar la tarjeta
+    let sum = 0;
+    let doubleDigit = false;
+    for (let i = numeroTarjeta.length - 1; i >= 0; i--) {
+        let digit = parseInt(numeroTarjeta.charAt(i), 10);
+        if (doubleDigit) {
+            digit *= 2;
+            if (digit > 9) digit -= 9;
+        }
+        sum += digit;
+        doubleDigit = !doubleDigit;
+    }
+
+    return sum % 10 === 0;
+}
