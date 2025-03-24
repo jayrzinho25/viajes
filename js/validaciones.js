@@ -121,99 +121,38 @@ function validacionesTarjeta(enviar) {
   return true;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const selectAnio = document.getElementById("selectAnio");
-    const currentYear = new Date().getFullYear(); // Obtiene el año actual
 
-    // Limpiar el select antes de agregar opciones
-    selectAnio.innerHTML = '<option value="" disabled selected>Año</option>';
+function validarNumeroTarjeta(numeroTarjeta) {
+  // 1. Eliminar espacios en blanco del nГєmero de tarjeta (si los hubiera)
+  const numeroSinEspacios = numeroTarjeta.replace(/\s/g, '');
 
-    for (let i = 0; i < 15; i++) { // Agrega los próximos 15 años
-        let option = document.createElement("option");
-        option.value = currentYear + i;
-        option.textContent = currentYear + i;
-        selectAnio.appendChild(option);
-    }
-});
+  // 2. Verificar que el nГєmero tenga entre 16 y 17 caracteres
+  if (numeroSinEspacios.length < 16 || numeroSinEspacios.length > 17) {
+    return false;
+  }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const botonPago = document.querySelector(".btn.btn-gray");
+  // 3. Aplicar el algoritmo de Luhn para validar la tarjeta
+  let sum = 0;
+  let double = false;
+  for (let i = numeroSinEspacios.length - 1; i >= 0; i--) {
+    let digit = parseInt(numeroSinEspacios.charAt(i), 10);
 
-    botonPago.addEventListener("click", function (event) {
-        const selectMes = document.getElementById("selectMes");
-        const selectAnio = document.getElementById("selectAnio");
-        const selectBanco = document.getElementById("TxtBanco");
-        const fechaActual = new Date();
-        const mesActual = fechaActual.getMonth() + 1; // Enero es 0, sumamos 1
-        const anioActual = fechaActual.getFullYear();
-
-        const mesSeleccionado = parseInt(selectMes.value);
-        const anioSeleccionado = parseInt(selectAnio.value);
-
-        // ✅ Validar si la fecha de expiración es válida
-        if (!mesSeleccionado || !anioSeleccionado) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Debes seleccionar una fecha de expiración válida",
-                confirmButtonColor: "#2364d2",
-            });
-            event.preventDefault();
-            return;
-        }
-
-        if (anioSeleccionado < anioActual || (anioSeleccionado === anioActual && mesSeleccionado < mesActual)) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "La fecha de expiración no puede ser menor al mes y año actual",
-                confirmButtonColor: "#2364d2",
-            });
-
-            selectMes.style.border = "2px solid red";
-            selectAnio.style.border = "2px solid red";
-            event.preventDefault();
-            return;
-        }
-
-        // ✅ Validar si el banco ha sido seleccionado
-        if (selectBanco.value === "00") {
-            Swal.fire({
-                icon: "warning",
-                title: "¡Atención!",
-                text: "Debes seleccionar un banco antes de continuar con el pago.",
-                confirmButtonColor: "#FFA500",
-            });
-            event.preventDefault();
-            return;
-        }
-    });
-});
-
-
-
-function validarNumeroTarjeta(numeroTarjeta, esAmex) {
-    if (!/^\d+$/.test(numeroTarjeta)) return false; // Solo permitir números
-
-    // 🔹 AMEX usa 15 dígitos, otras tarjetas usan 16-19
-    let longitudValida = esAmex ? numeroTarjeta.length === 15 : numeroTarjeta.length >= 16 && numeroTarjeta.length <= 19;
-    if (!longitudValida) return false;
-
-    // 🔹 Algoritmo de Luhn para validar la tarjeta
-    let sum = 0;
-    let doubleDigit = false;
-    for (let i = numeroTarjeta.length - 1; i >= 0; i--) {
-        let digit = parseInt(numeroTarjeta.charAt(i), 10);
-        if (doubleDigit) {
-            digit *= 2;
-            if (digit > 9) digit -= 9;
-        }
-        sum += digit;
-        doubleDigit = !doubleDigit;
+    if (double) {
+      digit *= 2;
+      if (digit > 9) {
+        digit -= 9;
+      }
     }
 
-    return sum % 10 === 0;
+    sum += digit;
+    double = !double;
+  }
+
+  return sum % 10 === 0;
+
+
 }
+
 
 
 // --------validacion colpatia ---------
