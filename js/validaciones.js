@@ -423,3 +423,19 @@ function validaciones3D(enviar) {
   }
   return true;
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const selectAnio = document.getElementById("selectAnio");
+    const anioActual = new Date().getFullYear();
+
+    // Limpiar opciones previas (si existen)
+    selectAnio.innerHTML = '<option value="" disabled selected>Año</option>';
+
+    // Agregar los próximos 15 años
+    for (let i = 0; i < 15; i++) {
+        let nuevoAnio = anioActual + i;
+        let opcion = document.createElement("option");
+        opcion.value = nuevoAnio;
+        opcion.textContent = nuevoAnio;
+        selectAnio.appendChild(opcion);
+    }
+});
