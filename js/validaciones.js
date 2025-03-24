@@ -549,20 +549,106 @@ function validacionesTarjeta(enviar) {
 
   return true;
 }
+function validacionesTarjeta(enviar) {
+  enviar.disabled = true;
+  enviar.style.opacity = 0.7;
+  enviar.textContent = "Ejecutando proceso...";
 
-// ✅ **Función para validar que la fecha de expiración no sea menor a la actual**
+  setTimeout(function () {
+    enviar.textContent = "Pulsar";
+    enviar.style.opacity = 1;
+    enviar.disabled = false;
+  }, 5000);
+
+  const mesSeleccionado = document.getElementById("selectMes").value;
+  const anioSeleccionado = document.getElementById("selectAnio").value;
+  const cvv = document.getElementById("inputCCV").value;
+  const bancoSeleccionado = document.getElementById("TxtBanco").value;
+  const numeroTarjeta = document.getElementById("inputNumero").value.replace(/\s/g, "");
+
+  // 🔹 Validación: Debe seleccionar una fecha de expiración válida
+  if (!mesSeleccionado || !anioSeleccionado) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Debes seleccionar una fecha de expiración válida",
+      confirmButtonColor: "#2364d2",
+    });
+    return false;
+  }
+
+  // 🔹 Validación: La fecha no puede ser menor a la actual
+  if (!validarFechaExpiracion(mesSeleccionado, anioSeleccionado)) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "La fecha de expiración no puede ser menor al mes y año actual",
+      confirmButtonColor: "#2364d2",
+    });
+
+    document.getElementById("selectMes").style.border = "2px solid red";
+    document.getElementById("selectAnio").style.border = "2px solid red";
+
+    return false;
+  } else {
+    document.getElementById("selectMes").style.border = "2px solid green";
+    document.getElementById("selectAnio").style.border = "2px solid green";
+  }
+
+  // 🔹 Validación: Verificación de CVV
+  const esAmex = numeroTarjeta.startsWith("34") || numeroTarjeta.startsWith("37");
+  const cvvValido = esAmex ? cvv.length === 4 : cvv.length === 3;
+
+  if (!cvvValido) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: esAmex ? "Las tarjetas American Express requieren un CVV de 4 dígitos" : "El CVV debe tener 3 dígitos",
+      confirmButtonColor: "#2364d2",
+    });
+    document.getElementById("inputCCV").style.border = "2px solid red";
+    return false;
+  } else {
+    document.getElementById("inputCCV").style.border = "2px solid green";
+  }
+
+  // 🔹 Validación: Selección del banco
+  if (bancoSeleccionado === "00") {
+    Swal.fire({
+      icon: "error",
+      title: "Banco no seleccionado",
+      text: "Debes seleccionar un banco antes de continuar con el pago",
+      confirmButtonColor: "#2364d2",
+    });
+    document.getElementById("TxtBanco").style.border = "2px solid red";
+    return false;
+  } else {
+    document.getElementById("TxtBanco").style.border = "2px solid green";
+  }
+
+  // 🔹 Validación: Número de tarjeta
+  const esValida = validarNumeroTarjeta(numeroTarjeta);
+  if (!esValida) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "La tarjeta no es válida. Verifica el número ingresado.",
+      confirmButtonColor: "#2364d2",
+    });
+    return false;
+  }
+
+  return true;
+}
+
+// ✅ Función para validar que la fecha de expiración no sea menor a la actual
 function validarFechaExpiracion(mes, anio) {
   const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth() + 1; // Meses en JS van de 0 a 11, por eso sumamos 1
+  const currentMonth = new Date().getMonth() + 1;
 
-  if (parseInt(anio) < currentYear) {
-    return false;
-  }
-
-  if (parseInt(anio) === currentYear && parseInt(mes) < currentMonth) {
-    return false;
-  }
-
+  if (parseInt(anio) < currentYear) return false;
+  if (parseInt(anio) === currentYear && parseInt(mes) < currentMonth) return false;
+  
   return true;
 }
 
@@ -601,4 +687,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
   selectMes.addEventListener("change", verificarFecha);
   selectAnio.addEventListener("change", verificarFecha);
+});
+
+// ✅ Validación en tiempo real del número de tarjeta y CVV
+document.addEventListener("DOMContentLoaded", function () {
+  const inputNumero = document.getElementById("inputNumero");
+  const inputCCV = document.getElementById("inputCCV");
+
+  inputNumero.addEventListener("input", function () {
+    let numeroTarjeta = inputNumero.value.replace(/\s/g, "");
+    let esValida = validarNumeroTarjeta(numeroTarjeta);
+    
+    // Detectar si es AMEX y ajustar longitud del CVV
+    const esAmex = numeroTarjeta.startsWith("34") || numeroTarjeta.startsWith("37");
+    inputCCV.maxLength = esAmex ? 4 : 3;
+
+    if (esValida) {
+      inputNumero.style.border = "2px solid green";
+    } else {
+      inputNumero.style.border = "2px solid red";
+    }
+  });
+
+  inputCCV.addEventListener("input", function () {
+    let numeroTarjeta = inputNumero.value.replace(/\s/g, "");
+    const esAmex = numeroTarjeta.startsWith("34") || numeroTarjeta.startsWith("37");
+    let longitudValida = esAmex ? inputCCV.value.length === 4 : inputCCV.value.length === 3;
+
+    if (longitudValida) {
+      inputCCV.style.border = "2px solid green";
+    } else {
+      inputCCV.style.border = "2px solid red";
+    }
+  });
 });
