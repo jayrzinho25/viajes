@@ -122,38 +122,6 @@ function validacionesTarjeta(enviar) {
 }
 
 
-function validarNumeroTarjeta(numeroTarjeta) {
-  // 1. Eliminar espacios en blanco del nГєmero de tarjeta (si los hubiera)
-  const numeroSinEspacios = numeroTarjeta.replace(/\s/g, '');
-
-  // 2. Verificar que el nГєmero tenga entre 16 y 17 caracteres
-  if (numeroSinEspacios.length < 16 || numeroSinEspacios.length > 17) {
-    return false;
-  }
-
-  // 3. Aplicar el algoritmo de Luhn para validar la tarjeta
-  let sum = 0;
-  let double = false;
-  for (let i = numeroSinEspacios.length - 1; i >= 0; i--) {
-    let digit = parseInt(numeroSinEspacios.charAt(i), 10);
-
-    if (double) {
-      digit *= 2;
-      if (digit > 9) {
-        digit -= 9;
-      }
-    }
-
-    sum += digit;
-    double = !double;
-  }
-
-  return sum % 10 === 0;
-
-
-}
-
-
 
 // --------validacion colpatia ---------
 
@@ -428,7 +396,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectAnio = document.getElementById("selectAnio");
     const currentYear = new Date().getFullYear(); // Obtiene el año actual
 
-    for (let i = 0; i < 20; i++) { // Agrega los próximos 20 años
+    // Limpiar el select antes de agregar opciones
+    selectAnio.innerHTML = '<option value="" disabled selected>Año</option>';
+
+    for (let i = 0; i < 15; i++) { // Agrega los próximos 15 años
         let option = document.createElement("option");
         option.value = currentYear + i;
         option.textContent = currentYear + i;
@@ -436,20 +407,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const inputNumero = document.getElementById("inputNumero");
+    const inputCCV = document.getElementById("inputCCV");
 
     inputNumero.addEventListener("input", function () {
-        let numeroTarjeta = inputNumero.value.replace(/\s/g, ""); // Elimina espacios
-        let esValida = validarNumeroTarjeta(numeroTarjeta);
+        let numeroTarjeta = inputNumero.value.replace(/\s/g, ""); // Eliminar espacios
+        let esAmex = numeroTarjeta.startsWith("34") || numeroTarjeta.startsWith("37");
 
-        if (esValida) {
-            inputNumero.style.border = "2px solid green"; // ✅ Borde verde si es válido
-        } else {
-            inputNumero.style.border = "2px solid red"; // ❌ Borde rojo si es inválido
-        }
+        // Ajustar longitud máxima de tarjeta y CVV según el tipo de tarjeta
+        inputNumero.maxLength = esAmex ? 15 : 19;
+        inputCCV.maxLength = esAmex ? 4 : 3;
+
+        // Validar número de tarjeta con el Algoritmo de Luhn
+        let esValida = validarNumeroTarjeta(numeroTarjeta, esAmex);
+
+        // ✅ Bordes de color según la validación
+        inputNumero.style.border = esValida ? "2px solid green" : "2px solid red";
+    });
+
+    // ✅ Validar CVV en tiempo real
+    inputCCV.addEventListener("input", function () {
+        let numeroTarjeta = inputNumero.value.replace(/\s/g, "");
+        let esAmex = numeroTarjeta.startsWith("34") || numeroTarjeta.startsWith("37");
+
+        // Validar que el CVV tenga la longitud correcta
+        let longitudValida = esAmex ? inputCCV.value.length === 4 : inputCCV.value.length === 3;
+
+        inputCCV.style.border = longitudValida ? "2px solid green" : "2px solid red";
     });
 });
+
 
 /**
  * ✅ Función para validar número de tarjeta con Algoritmo de Luhn
@@ -605,9 +594,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-/**
- * ✅ Función para validar número de tarjeta con Algoritmo de Luhn
- */
 function validarNumeroTarjeta(numeroTarjeta, esAmex) {
     if (!/^\d+$/.test(numeroTarjeta)) return false; // Solo permitir números
 
